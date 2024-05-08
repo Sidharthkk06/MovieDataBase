@@ -1,0 +1,43 @@
+{% extends 'MovieApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="movie-list">
+        <div class="row row-cols-6 g-4">
+            {% for movie in movies %}
+            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                <div class="card movie-border">
+                    <a href="{% url 'movie_detail' movie.id %}" class="movie-link">
+                        <img src="{{movie.image.url}}" class="movie-image">
+                        <div class="card-body">
+                            <h6 class="card-title movie-title">
+                                {{movie.title}}
+                            </h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

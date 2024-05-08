@@ -1,0 +1,16 @@
+{% extends 'MovieApp/base.html' %}
+
+{% block content%}
+
+<div class="section">
+    {% for genre in genres %}
+    <div class="genre-container" id="genre-{{ forloop.counter }}">
+        <div class="genre">
+            <h1 class="genre-id">{{ forloop.counter }}</h1>
+            <h1 class="genre-name"><a href="{% url 'genre_detail' genre.id %}">{{genre.genre_name}} genre</a></h1>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'MovieApp/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="movie-heading">
+        <h2>{{movie.title}}</h2>
+    </div>
+
+    {% if movie.youtube_video_id %}
+    <div class="trailer">
+        <div class="trailer-text">
+            <h3>Official Trailer</h3>
+        </div>
+    </div>
+
+    <div class="movie-trailer">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/{{ movie.youtube_video_id }}" frameborder="0"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="movie-overview">
+        <div class="movie-info-header">
+            <h3>overview</h3>
+        </div>
+        <div class="movie-info text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-md-7">
+                    <div class="movie-summary">
+                        <h6>{{movie.Summary}}</h6>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3 col-xs-6">
+                            <h6 class="heading">
+                                Genre
+                                <h6>
+                                    {% for genre in movie_genres %}
+                                    <a href="{% url 'genre_detail' genre.id %}"
+                                        style="text-decoration: none; color: black;">{{genre.genre_name }}{% if not forloop.last %}/{% endif %}</a>
+                                    {% endfor %}
+                                </h6>
+                            </h6>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <h6 class="heading">Release date</h6>
+                            <h6>{{movie.release_date}}</h6>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <h6 class="heading">Language</h6>
+                            <h6>{{movie.language}}</h6>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <h6 class="heading">Duration</h6>
+                            <h6>{{movie.duration}}</h6>
+                        </div>
+                        <div class="col-sm-3 col-xs-6">
+                            <h6 class="heading">Rating</h6>
+                            <div class="rating-box">
+                                <h6>MPAA: {{movie.rating}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-5">
+                    <div class="movie-poster">
+                        <img src="{{movie.image.url}}" style="aspect-ratio: 2/3; height: 400px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

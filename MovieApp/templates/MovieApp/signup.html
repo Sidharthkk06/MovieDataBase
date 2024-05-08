@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background: linear-gradient(to right, #000000, #800000);">
+    {% if messages %}
+    {% for message in messages%}
+    {{message}}
+    {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <p>Already have a account ? <a href="{% url 'signin' %}">Login Here</a></p>
+</body>
+
+</html>
