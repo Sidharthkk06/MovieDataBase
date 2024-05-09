@@ -18,9 +18,12 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar1">
         <div class="container-fluid">
 
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'movie_lst' %}">All Movies</a>
                 </li>
             </ul>
 
@@ -28,18 +31,12 @@
                 <form class="d-flex" action="{% url 'search' %}" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" name="query" placeholder="Search movies or genres" style="width: 400px;">
-                        <button type="submit" class="btn btn-outline-secondary">
-                            <i class="bi bi-search"></i> <!-- Assuming you're using Bootstrap icons -->
-                        </button>
                     </div>
                 </form>
             </div>
 
 
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'movie_lst' %}">All Movies</a>
-                </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link">Welcome, {{ request.user.username }}</a>
