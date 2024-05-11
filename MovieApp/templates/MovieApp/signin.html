@@ -5,23 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        form button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
     <div>
-        <!-- Pills navs -->
-        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="{% url 'signin' %}" role="tab"
-                    aria-controls="pills-login" aria-selected="true">Login</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="{% url 'signup' %}" role="tab"
-                    aria-controls="pills-register" aria-selected="false">Register</a>
-            </li>
-        </ul>
-        <!-- Pills navs -->
-
         {% if messages %}
         {% for message in messages%}
         <p>{{message}}</p>
@@ -35,5 +68,5 @@
         <p>Don't have a account ? <a href="{% url 'signup' %}">Signup Now!</a></p>
     </div>
 </body>
- 
+
 </html>

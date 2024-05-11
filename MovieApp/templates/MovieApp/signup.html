@@ -4,10 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
-<body style="background: linear-gradient(to right, #000000, #800000);">
+<body>
     {% if messages %}
     {% for message in messages%}
     {{message}}
@@ -19,6 +73,25 @@
         <button type="submit">Submit</button>
     </form>
     <p>Already have a account ? <a href="{% url 'signin' %}">Login Here</a></p>
+
+    <script>
+        // JavaScript code to move placeholder text to the top of input field when clicked
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputFields = document.querySelectorAll("input[type='text'], input[type='email'], input[type='password']");
+            inputFields.forEach(function (input) {
+                input.addEventListener("focus", function () {
+                    input.setAttribute("data-placeholder", input.getAttribute("placeholder"));
+                    input.setAttribute("placeholder", "");
+                });
+                input.addEventListener("blur", function () {
+                    var placeholder = input.getAttribute("data-placeholder");
+                    if (!input.value) {
+                        input.setAttribute("placeholder", placeholder);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
