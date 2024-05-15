@@ -1,11 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.views.generic import View, ListView, CreateView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from MovieApp.models import Genre, SubGenre, Movie
 from MovieApp.forms import SignUpForm, SignInForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -33,8 +35,11 @@ class GenreDetailView(View):
 class MovieListView(ListView):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.order_by('title') # Fetch all movies
+        paginator = Paginator(movies, 12)  # Show 30 movies per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         genres = Genre.objects.order_by('genre_name') # Fetch all genres
-        return render(request, 'MovieApp/movie_list.html', {'movies': movies, 'genres': genres})
+        return render(request, 'MovieApp/movie_list.html', {'movies': movies, 'genres': genres, 'page_obj': page_obj})
     
 class MovieDetailView(View):
     def get(self, request, *args, **kwargs):

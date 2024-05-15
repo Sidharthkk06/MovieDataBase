@@ -15,41 +15,42 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar1">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" id="navbar1">
         <div class="container-fluid">
 
             <ul class="navbar-nav me">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">HOME</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'movie_lst' %}">All Movies</a>
+                <li class="nav-items">
+                    <a class="nav-links" href="{% url 'movie_lst' %}">All Movies</a>
                 </li>
             </ul>
 
-            <div class="navbar-nav mx">
+            <!-- Search bar -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <form class="d-flex" action="{% url 'search' %}" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="query" placeholder="Search movies or genres" style="width: 400px;">
-                    </div>
+                    <input type="text" class="form-control me-2" name="query" placeholder="Search movies or genres"
+                        style="width: 400px;">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
 
 
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link">Welcome, {{ request.user.username }}</a>
+                <li class="nav-items">
+                    <a class="nav-links">Welcome, {{ request.user.username }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signout' %}">Log Off</a>
+                <li class="nav-items">
+                    <a class="nav-links" href="{% url 'signout' %}">Log Off</a>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Register</a>
+                <li class="nav-items">
+                    <a class="nav-links" href="{% url 'signup' %}">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signin' %}">Log In</a>
+                <li class="nav-items">
+                    <a class="nav-links" href="{% url 'signin' %}">Log In</a>
                 </li>
                 {% endif %}
             </ul>
@@ -77,9 +78,28 @@
         </div>
     </nav>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var navbar = document.getElementById('navbar1');
+            var navHeight = navbar.offsetHeight;
+            function toggleNavbar() {
+                if (window.scrollY >= navHeight) {
+                    navbar.classList.remove('navbar-transparent');
+                    navbar.classList.add('navbar-colored');
+                } else {
+                    navbar.classList.remove('navbar-colored');
+                    navbar.classList.add('navbar-transparent');
+                }
+            }
+            toggleNavbar();
+            window.addEventListener('scroll', toggleNavbar);
+        });
+    </script>
+
     {% block content %}
 
     {% endblock %}
+
 </body>
 
 </html>

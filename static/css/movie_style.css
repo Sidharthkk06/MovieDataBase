@@ -1,7 +1,18 @@
+/* Initial transparent state for navbar */
 .navbar {
-    background: #202020;
+    background: transparent;
+    /* Set initial background to transparent */
+    transition: background-color 0.3s;
+    /* Add transition effect for background color */
 }
 
+/* Colored state for navbar upon scrolling */
+.navbar-colored {
+    background: #fff;
+    /* Set background color when scrolled */
+}
+
+/* Other navbar styles */
 #navbar2 {
     margin-top: 56px;
 }
@@ -22,7 +33,7 @@
     color: #ad2a1a;
 }
 
-.navbar .navbar-nav .nav-item {
+.navbar .navbar-nav .nav-item, .nav-items {
     position: relative;
 }
 
@@ -189,7 +200,7 @@
 }
 
 .card-body p {
-    color: #6D6D6D !important; 
+    color: #6D6D6D !important;
     text-decoration: none;
     font-weight: 700;
     font-size: small;
@@ -282,7 +293,8 @@
 
 .rating-box {
     border: 2px solid #ccc;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px;
+    /* Rounded corners */
     display: inline-block;
 }
 
