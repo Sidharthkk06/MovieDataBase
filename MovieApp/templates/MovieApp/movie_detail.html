@@ -40,7 +40,8 @@
                                 <h6>
                                     {% for genre in movie_genres %}
                                     <a href="{% url 'genre_detail' genre.id %}"
-                                        style="text-decoration: none; color: black;">{{genre.genre_name }}{% if not forloop.last %}/{% endif %}</a>
+                                        style="text-decoration: none; color: black;">{{genre.genre_name }}</a>
+                                    {% if not forloop.last %}/{% endif %}
                                     {% endfor %}
                                 </h6>
                             </h6>
@@ -74,6 +75,5 @@
             </div>
         </div>
     </div>
-</div>
-
+    
 {% endblock %}

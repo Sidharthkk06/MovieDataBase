@@ -112,7 +112,8 @@
 
 .inlineModuleHeader,
 .trailer,
-.movie-info-header {
+.movie-info-header,
+.movie-review-header {
     position: relative;
     width: 100%;
     align-items: baseline;
@@ -123,14 +124,16 @@
 
 .diagonal-text,
 .trailer-text,
-.movie-info-header {
+.movie-info-header,
+.movie-review-header {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .diagonal-text::before,
 .trailer-text::before,
-.movie-info-header::before {
+.movie-info-header::before,
+.movie-review-header::before {
     left: 53px;
     top: 0px;
     transform-origin: left bottom;
@@ -139,9 +142,11 @@
 .diagonal-text::before,
 .trailer-text::before,
 .movie-info-header::before,
+.movie-review-header::before,
 .diagonal-text::after,
 .trailer-text::after,
-.movie-info-header::after {
+.movie-info-header::after,
+.movie-review-header::after {
     background-color: red;
     content: '';
     display: block;
@@ -153,7 +158,8 @@
 
 .diagonal-text::after,
 .trailer-text::after,
-.movie-info-header::after {
+.movie-info-header::after,
+.movie-review-header::after {
     left: -6px;
     top: calc(100% + -5px);
     transform-origin: right top;

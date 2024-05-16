@@ -22,8 +22,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">HOME</a>
                 </li>
-                <li class="nav-items">
-                    <a class="nav-links" href="{% url 'movie_lst' %}">All Movies</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'movie_lst' %}">All Movies</a>
                 </li>
             </ul>
 
@@ -39,18 +39,18 @@
 
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
-                <li class="nav-items">
-                    <a class="nav-links">Welcome, {{ request.user.username }}</a>
+                <li class="nav-item">
+                    <a class="nav-link">Welcome, {{ request.user.username }}</a>
                 </li>
-                <li class="nav-items">
-                    <a class="nav-links" href="{% url 'signout' %}">Log Off</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signout' %}">Log Off</a>
                 </li>
                 {% else %}
-                <li class="nav-items">
-                    <a class="nav-links" href="{% url 'signup' %}">Register</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Register</a>
                 </li>
-                <li class="nav-items">
-                    <a class="nav-links" href="{% url 'signin' %}">Log In</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signin' %}">Log In</a>
                 </li>
                 {% endif %}
             </ul>

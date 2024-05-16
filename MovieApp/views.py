@@ -6,7 +6,7 @@ from django.views.generic import View, ListView, CreateView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from MovieApp.models import Genre, SubGenre, Movie
-from MovieApp.forms import SignUpForm, SignInForm
+from MovieApp.forms import SignUpForm, SignInForm, UserReviewForm
 from django.db.models import Q
 
 # Create your views here.
@@ -35,7 +35,7 @@ class GenreDetailView(View):
 class MovieListView(ListView):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.order_by('title') # Fetch all movies
-        paginator = Paginator(movies, 12)  # Show 30 movies per page
+        paginator = Paginator(movies, per_page=24)  # Show 30 movies per page
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         genres = Genre.objects.order_by('genre_name') # Fetch all genres
