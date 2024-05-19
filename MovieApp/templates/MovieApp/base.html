@@ -30,11 +30,12 @@
             <!-- Search bar -->
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <form class="d-flex" action="{% url 'search' %}" method="GET">
-                    <input type="text" class="form-control me-2" name="query" placeholder="Search movies or genres"
+                    <input type="text" class="form-control me-2 dark-theme" name="query" placeholder="Search movies or genres"
                         style="width: 400px;">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
+            <!-- Search bar -->
 
 
             <ul class="navbar-nav">
@@ -79,22 +80,26 @@
     </nav>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var navbar = document.getElementById('navbar1');
-            var navHeight = navbar.offsetHeight;
-            function toggleNavbar() {
-                if (window.scrollY >= navHeight) {
-                    navbar.classList.remove('navbar-transparent');
-                    navbar.classList.add('navbar-colored');
-                } else {
-                    navbar.classList.remove('navbar-colored');
-                    navbar.classList.add('navbar-transparent');
-                }
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbar = document.getElementById('navbar1');
+            if (navbar) {
+                const changeNavbarOnScroll = () => {
+                    if (window.scrollY > 0) {
+                        navbar.classList.add('navbar-colored');
+                    } else {
+                        navbar.classList.remove('navbar-colored');
+                    }
+                };
+
+                // Initial check
+                changeNavbarOnScroll();
+
+                // Add scroll event listener
+                window.addEventListener('scroll', changeNavbarOnScroll);
             }
-            toggleNavbar();
-            window.addEventListener('scroll', toggleNavbar);
         });
     </script>
+
 
     {% block content %}
 

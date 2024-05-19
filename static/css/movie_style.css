@@ -1,14 +1,20 @@
+/* General body styling for dark theme */
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
 /* Initial transparent state for navbar */
 .navbar {
-    background: transparent;
-    /* Set initial background to transparent */
+    background: #121212;
+    /* Set initial background to black */
     transition: background-color 0.3s;
     /* Add transition effect for background color */
 }
 
 /* Colored state for navbar upon scrolling */
 .navbar-colored {
-    background: #fff;
+    background: transparent;
     /* Set background color when scrolled */
 }
 
@@ -18,7 +24,7 @@
 }
 
 .navbar a {
-    color: #ffffff;
+    color: #fff;
 }
 
 .navbar-toggler {
@@ -33,7 +39,8 @@
     color: #ad2a1a;
 }
 
-.navbar .navbar-nav .nav-item, .nav-items {
+.navbar .navbar-nav .nav-item,
+.nav-items {
     position: relative;
 }
 
@@ -184,16 +191,24 @@
     margin: 0px 0px;
 }
 
+.card {
+    background-color: transparent;
+    /* Make the card background transparent */
+    border: none;
+    /* Remove the border */
+}
+
 .card-body {
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 30px;
+    background-color: transparent;
 }
 
 .movie-image {
     max-width: 100%;
     height: auto;
-    box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 15px 10px rgba(40, 40, 40, 0.2);
 }
 
 .movie-border {
@@ -201,7 +216,7 @@
 }
 
 .movie-link {
-    color: black;
+    color: whitesmoke;
     text-decoration: none;
 }
 
@@ -221,7 +236,7 @@
 }
 
 .movie-link:hover img {
-    transform: translateY(-8px);
+    transform: translateY(-12px);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -306,4 +321,18 @@
 
 .rating-box h6 {
     margin: 0 5px;
+}
+
+.dark-theme {
+    background-color: #222;
+    /* Dark background color */
+    color: #fff;
+    /* Text color */
+    border-color: #333;
+    /* Border color */
+}
+
+.dark-theme::placeholder {
+    color: #ccc;
+    /* Placeholder text color */
 }

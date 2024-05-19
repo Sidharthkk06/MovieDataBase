@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.views.generic import View, ListView, CreateView
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from MovieApp.models import Genre, SubGenre, Movie
 from MovieApp.forms import SignUpForm, SignInForm, UserReviewForm
@@ -35,7 +36,7 @@ class GenreDetailView(View):
 class MovieListView(ListView):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.order_by('title') # Fetch all movies
-        paginator = Paginator(movies, per_page=24)  # Show 30 movies per page
+        paginator = Paginator(movies, per_page=24)  # Show 24 movies per page
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         genres = Genre.objects.order_by('genre_name') # Fetch all genres
@@ -99,3 +100,20 @@ class SearchView(View):
                 return render(request, 'no_results.html')
         else:
             return render(request, 'empty_query.html')
+        
+
+class UserReviewCreateView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = UserReviewForm()
+        return render(request, 'movie_detail.html', {'form': form})
+     
+    def post(self, request, movie_id):
+        movie = Movie.objects.get(id=movie_id)
+        form = UserReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.movie = movie
+            review.save()
+            return redirect('movie_detail', md=movie_id)
+        return redirect('movie_detail', md=movie_id)

@@ -67,7 +67,8 @@ class Movie(models.Model):
 class UserReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    text = models.TextField()
+    title = models.CharField(max_length=300, null=False, default='')
+    text = models.TextField() 
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 

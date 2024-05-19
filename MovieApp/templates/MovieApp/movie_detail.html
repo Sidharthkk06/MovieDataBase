@@ -28,13 +28,13 @@
         </div>
         <div class="movie-info text-center">
             <div class="row justify-content-center">
-                <div class="col-lg-9 col-md-7">
+                <div class="col-lg-9">
                     <div class="movie-summary">
                         <h6>{{movie.Summary}}</h6>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">
                                 Genre
                                 <h6>
@@ -46,19 +46,19 @@
                                 </h6>
                             </h6>
                         </div>
-                        <div class="col-sm-3 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">Release date</h6>
                             <h6>{{movie.release_date}}</h6>
                         </div>
-                        <div class="col-sm-3 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">Language</h6>
                             <h6>{{movie.language}}</h6>
                         </div>
-                        <div class="col-sm-3 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">Duration</h6>
                             <h6>{{movie.duration}}</h6>
                         </div>
-                        <div class="col-sm-3 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">Rating</h6>
                             <div class="rating-box">
                                 <h6>MPAA: {{movie.rating}}</h6>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-5">
+                <div class="col-lg-3 d-flex justify-content-center">
                     <div class="movie-poster">
                         <img src="{{movie.image.url}}" style="aspect-ratio: 2/3; height: 400px;">
                     </div>
@@ -76,4 +76,33 @@
         </div>
     </div>
     
+    <div class="movie-review">
+        <div class="movie-review-header">
+            <h3>User Reviews</h3>
+        </div>
+        <ul>
+            {% for review in movie.userreview_set.all %}
+            <li>
+                <strong>{{ review.user.username }}</strong> - {{ review.title }}<br>
+                {{ review.text }}<br>
+                Rating: {{ review.rating }}
+            </li>
+            {% empty %}
+            <li>No reviews yet.</li>
+            {% endfor %}
+        </ul>
+
+        {% if user.is_authenticated %}
+        <h2>Write a Review</h2>
+        <form action="{% url 'movie_review' movie.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+        {% else %}
+        <p>You must be logged in to write a review.</p>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}
