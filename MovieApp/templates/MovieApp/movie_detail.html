@@ -40,7 +40,7 @@
                                 <h6>
                                     {% for genre in movie_genres %}
                                     <a href="{% url 'genre_detail' genre.id %}"
-                                        style="text-decoration: none; color: black;">{{genre.genre_name }}</a>
+                                        style="text-decoration: none; color: whitesmoke;">{{genre.genre_name }}</a>
                                     {% if not forloop.last %}/{% endif %}
                                     {% endfor %}
                                 </h6>

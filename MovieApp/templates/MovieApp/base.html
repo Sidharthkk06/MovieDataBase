@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <!-- Navbar 1 -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" id="navbar1">
         <div class="container-fluid">
 
@@ -30,8 +31,8 @@
             <!-- Search bar -->
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <form class="d-flex" action="{% url 'search' %}" method="GET">
-                    <input type="text" class="form-control me-2 dark-theme" name="query" placeholder="Search movies or genres"
-                        style="width: 400px;">
+                    <input type="text" class="form-control me-2 dark-theme" name="query"
+                        placeholder="Search movies or genres" style="width: 400px;">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
@@ -41,7 +42,7 @@
             <ul class="navbar-nav">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link">Welcome, {{ request.user.username }}</a>
+                    <a class="nav-link login">Welcome, {{ request.user.username }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'signout' %}">Log Off</a>
@@ -57,7 +58,9 @@
             </ul>
         </div>
     </nav>
+    <!-- Navbar 1 -->
 
+    <!-- Navbar 2 -->
     <nav class="navbar navbar-expand-lg" id="navbar2">
         <div class="container-fluid">
             <div class="collapse navbar-collapse justify-content-end" id="navbar2SupportedContent">
@@ -78,28 +81,7 @@
             </div>
         </div>
     </nav>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const navbar = document.getElementById('navbar1');
-            if (navbar) {
-                const changeNavbarOnScroll = () => {
-                    if (window.scrollY > 0) {
-                        navbar.classList.add('navbar-colored');
-                    } else {
-                        navbar.classList.remove('navbar-colored');
-                    }
-                };
-
-                // Initial check
-                changeNavbarOnScroll();
-
-                // Add scroll event listener
-                window.addEventListener('scroll', changeNavbarOnScroll);
-            }
-        });
-    </script>
-
+    <!-- Navbar 2 -->
 
     {% block content %}
 

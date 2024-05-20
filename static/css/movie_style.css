@@ -1,4 +1,4 @@
-/* General body styling for dark theme */
+/* Dark Theme */
 body {
     background-color: #121212;
     color: #ffffff;
@@ -6,16 +6,10 @@ body {
 
 /* Initial transparent state for navbar */
 .navbar {
-    background: #121212;
+    background: black;
     /* Set initial background to black */
     transition: background-color 0.3s;
     /* Add transition effect for background color */
-}
-
-/* Colored state for navbar upon scrolling */
-.navbar-colored {
-    background: transparent;
-    /* Set background color when scrolled */
 }
 
 /* Other navbar styles */
@@ -32,19 +26,17 @@ body {
 }
 
 .nav-link {
-    text-transform: uppercase;
+    text-transform: uppercase;     
+    font-weight: 600;
 }
 
-.nav-link:hover {
-    color: #ad2a1a;
-}
-
-.navbar .navbar-nav .nav-item,
+/* Add hover after effects for navbar2 only */
+#navbar2 .nav-item,
 .nav-items {
     position: relative;
 }
 
-.navbar .navbar-nav .nav-item::after {
+#navbar2 .navbar-nav .nav-item::after {
     position: absolute;
     top: 45px;
     left: 50%;
@@ -56,13 +48,18 @@ body {
     transition: width 0.3s ease;
 }
 
-.navbar .navbar-nav .nav-item:hover::after {
+#navbar2 .navbar-nav .nav-item:hover::after {
     width: 100%;
 }
 
-.container {
-    margin-top: 20px;
+.navbar .nav-link:not(.login):hover {
+    color: #ad2a1a;
 }
+
+.login:hover {
+    color: whitesmoke;
+}
+
 
 .genre-container {
     background: linear-gradient(#101010, #202020);
@@ -208,7 +205,7 @@ body {
 .movie-image {
     max-width: 100%;
     height: auto;
-    box-shadow: 10px 15px 10px rgba(40, 40, 40, 0.2);
+    box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.2);
 }
 
 .movie-border {
