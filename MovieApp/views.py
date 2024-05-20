@@ -48,7 +48,11 @@ class MovieDetailView(View):
         movie = Movie.objects.get(id=movie_id)
         movie_genres = movie.genres.all() # Fetch all genres available in the database
         genres = Genre.objects.order_by('genre_name') # Fetch all genres
-        return render(request, 'MovieApp/movie_detail.html', {'movie':movie, 'movie_genres':movie_genres, 'genres':genres})
+
+         # Instantiate the form
+        form = UserReviewForm()
+
+        return render(request, 'MovieApp/movie_detail.html', {'movie':movie, 'movie_genres':movie_genres, 'genres':genres, 'form':form})
     
 class SignUpView(CreateView):
     model = User

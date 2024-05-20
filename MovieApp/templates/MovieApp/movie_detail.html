@@ -8,6 +8,7 @@
     </div>
 
     {% if movie.youtube_video_id %}
+    <!-- Check if there is a YouTube video ID available -->
     <div class="trailer">
         <div class="trailer-text">
             <h3>Official Trailer</h3>
@@ -16,6 +17,7 @@
 
     <div class="movie-trailer">
         <div class="video-container">
+            <!-- Embed the YouTube video -->
             <iframe src="https://www.youtube.com/embed/{{ movie.youtube_video_id }}" frameborder="0"
                 allowfullscreen></iframe>
         </div>
@@ -30,15 +32,18 @@
             <div class="row justify-content-center">
                 <div class="col-lg-9">
                     <div class="movie-summary">
+                        <!-- Display movie summary -->
                         <h6>{{movie.Summary}}</h6>
                     </div>
 
                     <div class="row">
+                        <!-- Display movie details -->
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">
                                 Genre
                                 <h6>
                                     {% for genre in movie_genres %}
+                                    <!-- Link to genre detail page -->
                                     <a href="{% url 'genre_detail' genre.id %}"
                                         style="text-decoration: none; color: whitesmoke;">{{genre.genre_name }}</a>
                                     {% if not forloop.last %}/{% endif %}
@@ -58,9 +63,32 @@
                             <h6 class="heading">Duration</h6>
                             <h6>{{movie.duration}}</h6>
                         </div>
+
+                        {% if movie.actors.all %}
+                        <!-- Check if there are any actors associated with the movie -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <h6 class="heading">Actors</h6>
+                            <!-- Loop through each actor and display their name -->
+                            {% for actor in movie.actors.all %}
+                                <h6>{{ actor.name }}</h6>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {% if movie.directors.all %}
+                        <!-- Display directors -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <h6 class="heading">Director</h6>
+                            {% for director in movie.directors.all %}
+                                <h6>{{ director.name }}</h6>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <h6 class="heading">Rating</h6>
                             <div class="rating-box">
+                                <!-- Display MPAA rating -->
                                 <h6>MPAA: {{movie.rating}}</h6>
                             </div>
                         </div>
@@ -68,6 +96,7 @@
                 </div>
 
                 <div class="col-lg-3 d-flex justify-content-center">
+                    <!-- Display movie poster -->
                     <div class="movie-poster">
                         <img src="{{movie.image.url}}" style="aspect-ratio: 2/3; height: 400px;">
                     </div>
@@ -76,22 +105,42 @@
         </div>
     </div>
     
+
     <div class="movie-review">
-        <div class="movie-review-header">
+
+        <div class="movie-review-header d-flex justify-content-between">
             <h3>User Reviews</h3>
         </div>
-        <ul>
-            {% for review in movie.userreview_set.all %}
-            <li>
-                <strong>{{ review.user.username }}</strong> - {{ review.title }}<br>
-                {{ review.text }}<br>
-                Rating: {{ review.rating }}
-            </li>
-            {% empty %}
-            <li>No reviews yet.</li>
-            {% endfor %}
-        </ul>
 
+        <!-- Display user reviews -->
+        {% for review in movie.userreview_set.all %}
+        <div class="user-review-card">
+
+            <div class="user-review-header">
+                <h5>{{ review.user.username }}</h5>
+                <p>Rating: {{ review.rating }}</p>
+            </div>
+            
+            <div class="user-review-body">
+                <h5>{{ review.title }}</h5>
+                <p>{{ review.text }}</p>
+            </div>
+            
+            <div class="user-review-footer">
+                <p>Created At: {{ review.created_at|date:"F d, Y H:i" }}</p> <!-- Format the date -->
+            </div>
+
+        </div>
+
+        {% empty %}
+        <!-- Display message if no reviews available -->
+        <p>No reviews yet.</p>
+
+        {% endfor %}
+    </div>
+
+    <div>
+        <!-- Display form for writing a review if user is authenticated -->
         {% if user.is_authenticated %}
         <h2>Write a Review</h2>
         <form action="{% url 'movie_review' movie.id %}" method="post">
@@ -99,8 +148,11 @@
             {{ form.as_p }}
             <button type="submit">Submit Review</button>
         </form>
+
         {% else %}
+        <!-- Display message if user is not authenticated -->
         <p>You must be logged in to write a review.</p>
+        
         {% endif %}
     </div>
 </div>

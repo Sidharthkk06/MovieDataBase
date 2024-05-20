@@ -4,12 +4,10 @@ body {
     color: #ffffff;
 }
 
-/* Initial transparent state for navbar */
 .navbar {
-    background: black;
-    /* Set initial background to black */
-    transition: background-color 0.3s;
-    /* Add transition effect for background color */
+    background: transparent;
+    backdrop-filter: blur(6px);
+    /* Add blur effect to the navbar */
 }
 
 /* Other navbar styles */
@@ -26,7 +24,7 @@ body {
 }
 
 .nav-link {
-    text-transform: uppercase;     
+    text-transform: uppercase;
     font-weight: 600;
 }
 
@@ -273,7 +271,7 @@ body {
     height: 100%;
 }
 
-.trailer {
+.trailer, .user-review-card {
     margin: 20px 0px 30px;
 }
 
@@ -282,7 +280,8 @@ body {
     padding: 20px 0px 0px;
 }
 
-.movie-summary {
+.movie-summary,
+.user-review-body {
     white-space: pre-line;
 }
 
@@ -291,7 +290,6 @@ body {
     text-align: justify;
     letter-spacing: 1px;
     font-size: 1em;
-
 }
 
 .col-sm-3 {
@@ -332,4 +330,11 @@ body {
 .dark-theme::placeholder {
     color: #ccc;
     /* Placeholder text color */
+}
+
+.user-review-body p {
+    padding: 5px 0px 0px;
+    text-align: justify;
+    letter-spacing: 1px;
+    font-size: 1em;
 }

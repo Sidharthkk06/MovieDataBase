@@ -23,4 +23,4 @@ class SignInForm(forms.Form):
 class UserReviewForm(forms.ModelForm):
     class Meta:
         model = UserReview
-        fields = '__all__'
+        fields = ['title', 'text', 'rating']
