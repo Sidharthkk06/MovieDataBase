@@ -8,6 +8,8 @@
     <title>MovieDB - The Ultimate Movie Genres List </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="{% static 'css/movie_style.css' %}">
 </head>
 
@@ -27,10 +29,11 @@
 
             <!-- Search bar -->
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <form class="d-flex" action="{% url 'search' %}" method="GET">
-                    <input type="text" class="form-control me-2 dark-theme" name="query"
-                        placeholder="Search movies or genres" style="width: 400px;">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                <form class="d-flex search-icon-position" action="{% url 'search' %}" method="GET">
+                    <div class="input-container">
+                        <input type="text" class="form-control search-bar" name="query" placeholder="Search movies or genres" style="width: 300px; padding-left: 50px;">
+                        <button class="btn btn-outline-light search-button" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+                    </div>
                 </form>
             </div>
 
@@ -98,6 +101,8 @@
             }
         });
     </script>
+
+    
 
     {% block content %}
 

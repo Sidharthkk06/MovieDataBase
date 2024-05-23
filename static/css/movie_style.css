@@ -1,13 +1,26 @@
 /* Dark Theme */
 body {
-    background-color: #121212;
+    background-color: #1f1f1f;
     color: #ffffff;
 }
 
+/* Base navbar styles */
 .navbar {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Transparent and blur effect */
+.navbar-transparent {
     background: transparent;
     backdrop-filter: blur(6px);
     /* Add blur effect to the navbar */
+}
+
+/* Black background color */
+.navbar-colored {
+    background-color: #0a0a0a;
+    backdrop-filter: none;
+    /* Remove blur effect */
 }
 
 /* Other navbar styles */
@@ -56,6 +69,49 @@ body {
 
 .login:hover {
     color: whitesmoke;
+}
+
+/* CSS Style for Sreach Bar */
+
+.search-bar {
+    background-color: transparent;
+    border: 1px solid #ffffff3a;
+    border-radius: 18px;
+    color: white;
+    /* Ensure the text color is white */
+}
+
+.search-bar:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Adjust to desired focus background color */
+    outline: none;
+    /* Remove default focus outline */
+    color: white;
+    /* Ensure the text color remains white when focused */
+}
+
+.search-bar::placeholder {
+    color: #ccc;
+    /* Placeholder text color */
+}
+
+.search-icon-position {
+    position: relative;
+}
+
+.search-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: white;
+}
+
+.search-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    /* Optional: add a hover effect */
 }
 
 
@@ -179,7 +235,9 @@ body {
 }
 
 .movie-list {
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+    display: grid;
+    align-items: center;
 }
 
 .row {
@@ -271,7 +329,8 @@ body {
     height: 100%;
 }
 
-.trailer, .user-review-card {
+.trailer,
+.movie-review-header {
     margin: 20px 0px 30px;
 }
 
@@ -318,23 +377,31 @@ body {
     margin: 0 5px;
 }
 
-.dark-theme {
-    background-color: #222;
-    /* Dark background color */
-    color: #fff;
-    /* Text color */
-    border-color: #333;
-    /* Border color */
-}
-
-.dark-theme::placeholder {
-    color: #ccc;
-    /* Placeholder text color */
-}
-
 .user-review-body p {
     padding: 5px 0px 0px;
     text-align: justify;
     letter-spacing: 1px;
     font-size: 1em;
+}
+
+/* CSS Style for Pagination */
+
+.pagination .page-item {
+    margin: 0 5px; /* Adjusts the spacing between tiles */
+}
+.pagination .page-link {
+    background-color: #484548;
+    color: #dc2c2c;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+}
+.pagination .page-link:hover {
+    background-color: #dc2c2c;
+    color: white;
+}
+.pagination .page-item.active .page-link {
+    background-color: #dc2c2c;
+    color: whitesmoke;
+    border-color: red;
 }

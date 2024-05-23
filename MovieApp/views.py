@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
@@ -5,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View, ListView, CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from MovieApp.models import Genre, SubGenre, Movie
 from MovieApp.forms import SignUpForm, SignInForm, UserReviewForm
 from django.db.models import Q
@@ -97,13 +98,13 @@ class SearchView(View):
             movie = Movie.objects.filter(title__icontains=query).first()
             genre = Genre.objects.filter(genre_name__icontains=query).first()
             if movie:
-                return redirect('movie_detail', md=movie.id)
+                return JsonResponse({'status': 'redirect', 'url': reverse('movie_detail', args=[movie.id])})
             elif genre:
-                return redirect('genre_detail', gd=genre.id)
+                return JsonResponse({'status': 'redirect', 'url': reverse('genre_detail', args=[genre.id])})
             else:
-                return render(request, 'no_results.html')
+                return JsonResponse({'status': 'error', 'message': 'No results found'})
         else:
-            return render(request, 'empty_query.html')
+            return JsonResponse({'status': 'error', 'message': 'Query cannot be empty'})
         
 
 class UserReviewCreateView(LoginRequiredMixin, View):
